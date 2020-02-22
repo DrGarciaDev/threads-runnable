@@ -5,17 +5,27 @@
  */
 package threadsrunnable;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author luis_
  */
-public class ThreadsRunnable {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+public class ThreadsRunnable implements Runnable {
+    private long ms         = 0;
+    @Override
+    public void run() {
+        try {
+            ms = (long)((Math.random() * 5 + 1) * 1000);
+            System.out.println("MS " + ms);
+            
+            Thread.sleep(ms);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(ThreadsRunnable.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println("Proceso " + Thread.currentThread().getName() + " Finalizado en " + ms);
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
